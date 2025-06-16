@@ -77,6 +77,32 @@ export const InitialTasks: Task[] = [
 export const InitialCategories: Category[] = [
   {
     id: 1,
-    type: 'business'
+    type: 'Work'
+  },
+  {
+    id: 2,
+    type: 'Design'
+  },
+  {
+    id: 3,
+    type: 'Finance'
+  },
+  {
+    id: 4,
+    type: 'Marketing'
+  },
+  {
+    id: 5,
+    type: 'Development'
+  },
+  {
+    id: 6,
+    type: 'Content'
+  },
+  {
+    id: 7,
+    type: 'Research'
   }
 ]
+
+export const StatusList = ['New task', 'Scheduled', 'In progress', 'Completed']

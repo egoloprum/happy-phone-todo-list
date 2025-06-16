@@ -6,13 +6,13 @@ import { FC, useEffect, useRef, useState } from 'react'
 import { AddCategoryModal } from './addCategoryModal'
 import { createPortal } from 'react-dom'
 
-interface AddCategoryProps {}
+interface AddCategoryBtnProps {}
 
-export const AddCategory: FC<AddCategoryProps> = ({}) => {
+export const AddCategoryBtn: FC<AddCategoryBtnProps> = ({}) => {
   const dialogRef = useRef<{ showModal: () => void; close: () => void } | null>(
     null
   )
-  const [isClient, setIsClient] = useState(false)
+  const [isClient, setIsClient] = useState<boolean>(false)
 
   useEffect(() => setIsClient(true), [])
 

@@ -3,16 +3,16 @@
 import { Button } from '@/shared/ui'
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
-interface SideModalProps {
+interface AddCategoryProps {
   onClose?: () => void
 }
 
-type SideModalRef = {
+type AddCategoryRef = {
   showModal: () => void
   close: () => void
 }
 
-export const AddCategoryModal = forwardRef<SideModalRef, SideModalProps>(
+export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
   ({ onClose = () => {} }, ref) => {
     const dialogRef = useRef<HTMLDialogElement>(null)
     const [newCategory, setNewCategory] = useState<string>('')
