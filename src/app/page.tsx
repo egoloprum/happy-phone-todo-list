@@ -2,7 +2,7 @@
 
 import { Category } from '@/entities/categories/type'
 import { Task } from '@/entities/task/type'
-import { InitialTasks } from '@/shared/lib/data'
+import { InitialCategories, InitialTasks } from '@/shared/lib/data'
 import { Header } from '@/widgets/header'
 import { Kanban } from '@/widgets/kanban'
 import { Table } from '@/widgets/table'
@@ -22,17 +22,34 @@ export default function Home() {
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
-    if (storedTasks) {
+    const storedCategories = localStorage.getItem('categories')
+
+    if (storedTasks && storedCategories) {
       setTasks(JSON.parse(storedTasks))
+      setCategories(JSON.parse(storedCategories))
     } else {
       localStorage.setItem('tasks', JSON.stringify(InitialTasks))
       setTasks(InitialTasks)
+      localStorage.setItem('categories', JSON.stringify(InitialCategories))
+      setCategories(InitialCategories)
     }
   }, [])
 
+  useEffect(() => {
+    if (tasks.length) {
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+    }
+  }, [tasks])
+
+  useEffect(() => {
+    if (categories.length) {
+      localStorage.setItem('categories', JSON.stringify(categories))
+    }
+  }, [categories])
+
   return (
     <div className="min-h-[100vh]">
-      <Header />
+      <Header categories={categories} tasks={tasks} setTasks={setTasks} />
 
       {viewMode === 'table' ? (
         <Table tasks={tasks} />
