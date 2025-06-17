@@ -1,17 +1,19 @@
 'use client'
 
-import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
+import { ButtonHTMLAttributes, FC, ReactNode, RefObject } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   mode: 'primary' | 'secondary' | 'danger' | 'ghost'
   children: ReactNode
   className?: string
+  ref?: RefObject<HTMLButtonElement | null>
 }
 
 export const Button: FC<ButtonProps> = ({
   mode,
   children,
   className = '',
+  ref,
   ...rest
 }) => {
   const modes = {
@@ -24,6 +26,7 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       type="button"
       className={`rounded-xl flex min-w-fit gap-2 items-center px-4 py-2 cursor-pointer outline-0 ${modes[mode]} ${className}`}
       {...rest}>
