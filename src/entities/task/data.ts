@@ -1,5 +1,4 @@
-import { Category } from '@/entities/categories/type'
-import { Task } from '@/entities/task/type'
+import { Task } from './type'
 
 export const InitialTasks: Task[] = [
   {
@@ -73,36 +72,3 @@ export const InitialTasks: Task[] = [
     created_at: '2023-10-10'
   }
 ]
-
-export const InitialCategories: Category[] = [
-  {
-    id: 1,
-    type: 'Work'
-  },
-  {
-    id: 2,
-    type: 'Design'
-  },
-  {
-    id: 3,
-    type: 'Finance'
-  },
-  {
-    id: 4,
-    type: 'Marketing'
-  },
-  {
-    id: 5,
-    type: 'Development'
-  },
-  {
-    id: 6,
-    type: 'Content'
-  },
-  {
-    id: 7,
-    type: 'Research'
-  }
-]
-
-export const StatusList = ['New task', 'Scheduled', 'In progress', 'Completed']

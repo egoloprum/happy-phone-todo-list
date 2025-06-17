@@ -1,14 +1,14 @@
 'use client'
 
-import { Button } from '@/shared/ui'
 import { SquarePlus } from 'lucide-react'
-import { FC, useEffect, useRef, useState } from 'react'
-import { AddCategoryModal } from './addCategoryModal'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-interface AddCategoryBtnProps {}
+import { Button } from '@/shared/ui'
 
-export const AddCategoryBtn: FC<AddCategoryBtnProps> = ({}) => {
+import { AddCategoryModal } from './addCategoryModal'
+
+export const AddCategoryBtn = ({}) => {
   const dialogRef = useRef<{ showModal: () => void; close: () => void } | null>(
     null
   )
