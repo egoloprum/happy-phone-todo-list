@@ -1,9 +1,11 @@
 'use client'
 
-import { Task } from '@/entities/task/type'
-import { getUniqueCategories } from '@/shared/lib/utils'
 import Link from 'next/link'
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+
+import { Task } from '@/entities/task'
+
+import { getUniqueCategories } from '../lib/utils'
 
 interface KanbanProps {
   tasks: Task[]
@@ -30,10 +32,13 @@ export const Kanban: FC<KanbanProps> = ({ tasks, setTasks }) => {
     }
   }, [tasks, categoryOrder])
 
-  const tasksByCategory = categories.reduce((acc, category) => {
-    acc[category] = tasks.filter(task => task.category === category)
-    return acc
-  }, {} as Record<string, Task[]>)
+  const tasksByCategory = categories.reduce(
+    (acc, category) => {
+      acc[category] = tasks.filter(task => task.category === category)
+      return acc
+    },
+    {} as Record<string, Task[]>
+  )
 
   const statusColor = {
     'New task': 'bg-purple-300',

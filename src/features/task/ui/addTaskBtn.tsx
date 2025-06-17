@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@/shared/ui'
 import { Plus } from 'lucide-react'
 import {
   Dispatch,
@@ -11,21 +10,19 @@ import {
   useState
 } from 'react'
 import { createPortal } from 'react-dom'
+
+import { Category } from '@/entities/categories'
+import { Task } from '@/entities/task'
+import { Button } from '@/shared/ui'
+
 import { AddTaskModal } from './addTaskModal'
-import { Category } from '@/entities/categories/type'
-import { Task } from '@/entities/task/type'
 
 interface AddTaskBtnProps {
   categories: Category[]
-  tasks: Task[]
   setTasks: Dispatch<SetStateAction<Task[]>>
 }
 
-export const AddTaskBtn: FC<AddTaskBtnProps> = ({
-  categories,
-  tasks,
-  setTasks
-}) => {
+export const AddTaskBtn: FC<AddTaskBtnProps> = ({ categories, setTasks }) => {
   const dialogRef = useRef<{ showModal: () => void; close: () => void } | null>(
     null
   )

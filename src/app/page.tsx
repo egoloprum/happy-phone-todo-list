@@ -1,21 +1,22 @@
 'use client'
 
-import { Category } from '@/entities/categories/type'
-import { Task } from '@/entities/task/type'
-import { InitialCategories, InitialTasks, StatusList } from '@/shared/lib/data'
+import { useSearchParams } from 'next/navigation'
+import { Suspense, useEffect, useMemo, useState } from 'react'
+
+import { InitialCategories, Category } from '@/entities/categories'
+import { StatusList } from '@/entities/status'
+import { InitialTasks, Task } from '@/entities/task'
 import { Header } from '@/widgets/header'
 import { Kanban } from '@/widgets/kanban'
 import { Table } from '@/widgets/table'
-import { useSearchParams } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [categories, setCategories] = useState<Category[]>([])
 
   const searchParams = useSearchParams()
-  let viewMode = searchParams.get('view') || 'table'
-  let sortMode = searchParams.get('sort')
+  const viewMode = searchParams.get('view') || 'table'
+  const sortMode = searchParams.get('sort')
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
@@ -60,10 +61,13 @@ export default function Home() {
           })
 
         case 'status':
-          const statusOrder = StatusList.reduce((acc, status, index) => {
-            acc[status] = index
-            return acc
-          }, {} as Record<string, number>)
+          const statusOrder = StatusList.reduce(
+            (acc, status, index) => {
+              acc[status] = index
+              return acc
+            },
+            {} as Record<string, number>
+          )
 
           return statusOrder[a.status] - statusOrder[b.status]
 
@@ -75,13 +79,15 @@ export default function Home() {
 
   return (
     <div className="min-h-[100vh]">
-      <Header categories={categories} tasks={tasks} setTasks={setTasks} />
+      <Header categories={categories} setTasks={setTasks} />
 
-      {viewMode === 'table' ? (
-        <Table tasks={sortedTasks} />
-      ) : (
-        <Kanban tasks={sortedTasks} setTasks={setTasks} />
-      )}
+      <Suspense fallback={<div>Loading...</div>}>
+        {viewMode === 'table' ? (
+          <Table tasks={sortedTasks} />
+        ) : (
+          <Kanban tasks={sortedTasks} setTasks={setTasks} />
+        )}
+      </Suspense>
     </div>
   )
 }

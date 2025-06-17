@@ -1,8 +1,9 @@
 'use client'
 
-import { Task } from '@/entities/task/type'
 import Link from 'next/link'
 import { FC } from 'react'
+
+import { Task } from '@/entities/task'
 
 interface TableProps {
   tasks: Task[]

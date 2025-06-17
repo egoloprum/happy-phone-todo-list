@@ -1,4 +1,4 @@
-import { Task } from '@/entities/task/type'
+import { Task } from '@/entities/task'
 
 export function getUniqueCategories(tasks: Task[]): string[] {
   const categoriesSet = new Set<string>()

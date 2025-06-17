@@ -1,13 +1,12 @@
 'use client'
 
-import { Button } from '@/shared/ui'
 import { ArrowUpDown } from 'lucide-react'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { FC, useEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 
-interface SortTaskProps {}
+import { Button } from '@/shared/ui'
 
-export const SortTask: FC<SortTaskProps> = ({}) => {
+export const SortTask = () => {
   const [toggle, setToggle] = useState<boolean>(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -49,37 +48,39 @@ export const SortTask: FC<SortTaskProps> = ({}) => {
   }
 
   return (
-    <div className="relative" ref={dropdownRef}>
-      <Button
-        ref={buttonRef}
-        type="button"
-        mode="ghost"
-        onClick={() => setToggle(!toggle)}
-        className="h-full"
-        aria-expanded={toggle}>
-        <ArrowUpDown />
-        <span className="ml-2">Sorting</span>
-      </Button>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="relative w-full" ref={dropdownRef}>
+        <Button
+          ref={buttonRef}
+          type="button"
+          mode="ghost"
+          onClick={() => setToggle(!toggle)}
+          className="h-full w-full"
+          aria-expanded={toggle}>
+          <ArrowUpDown />
+          <span className="ml-2">Sorting</span>
+        </Button>
 
-      {toggle && (
-        <div className="border border-gray-200 mt-2 absolute left-0 rounded-xl gap-2 p-1 bg-white z-10 shadow-lg min-w-[140px]">
-          <button
-            className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
-            onClick={() => handleSort('date')}>
-            By Date
-          </button>
-          <button
-            className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
-            onClick={() => handleSort('alphabet')}>
-            By Alphabet
-          </button>
-          <button
-            className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
-            onClick={() => handleSort('status')}>
-            By Status
-          </button>
-        </div>
-      )}
-    </div>
+        {toggle && (
+          <div className="border border-gray-200 mt-2 absolute left-0 rounded-xl gap-2 p-1 bg-white z-10 shadow-lg min-w-[140px]">
+            <button
+              className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
+              onClick={() => handleSort('date')}>
+              By Date
+            </button>
+            <button
+              className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
+              onClick={() => handleSort('alphabet')}>
+              By Alphabet
+            </button>
+            <button
+              className="text-nowrap text-start hover:bg-gray-100 px-4 py-2 rounded-md cursor-pointer w-full text-sm"
+              onClick={() => handleSort('status')}>
+              By Status
+            </button>
+          </div>
+        )}
+      </div>
+    </Suspense>
   )
 }

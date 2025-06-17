@@ -1,11 +1,12 @@
 'use client'
 
-import { Category } from '@/entities/categories/type'
-import { Task } from '@/entities/task/type'
-import { StatusList } from '@/shared/lib/data'
-import { Button, Input, Select } from '@/shared/ui'
 import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { useForm, Controller } from 'react-hook-form'
+
+import { Category } from '@/entities/categories'
+import { StatusList } from '@/entities/status'
+import { Task } from '@/entities/task'
+import { Button, Input, Select } from '@/shared/ui'
 
 interface AddTaskProps {
   onClose?: () => void
@@ -74,8 +75,6 @@ export const AddTaskModal = forwardRef<AddTaskRef, AddTaskProps>(
         category: data.category,
         created_at: data.date
       }
-
-      console.log('newTask', newTask)
 
       onAddTask(newTask)
       onClose()

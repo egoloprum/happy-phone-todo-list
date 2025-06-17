@@ -1,7 +1,8 @@
 'use client'
 
-import { Button } from '@/shared/ui'
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
+
+import { Button } from '@/shared/ui'
 
 interface AddCategoryProps {
   onClose?: () => void
@@ -93,3 +94,5 @@ export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
     )
   }
 )
+
+AddCategoryModal.displayName = 'AddCategoryModal'
