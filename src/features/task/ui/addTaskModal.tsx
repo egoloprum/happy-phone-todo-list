@@ -170,7 +170,7 @@ export const AddTaskModal = forwardRef<AddTaskRef, AddTaskProps>(
               Cancel
             </Button>
             <Button type="submit" mode="primary">
-              Add Task
+              Continue
             </Button>
           </div>
         </form>

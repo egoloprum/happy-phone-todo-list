@@ -32,7 +32,7 @@ export const FilterTaskBtn: FC<FilterTaskBtnProps> = ({ categories }) => {
         className="w-full"
         onClick={openDialog}>
         <Funnel />
-        Filter
+        <span>Filter</span>
       </Button>
       {isClient &&
         createPortal(

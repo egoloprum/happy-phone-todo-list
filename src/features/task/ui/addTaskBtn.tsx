@@ -41,7 +41,7 @@ export const AddTaskBtn: FC<AddTaskBtnProps> = ({ categories, setTasks }) => {
     <>
       <Button type="button" mode="primary" onClick={openDialog}>
         <Plus />
-        Add new
+        <span>Add new</span>
       </Button>
 
       {isClient &&

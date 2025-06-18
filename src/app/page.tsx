@@ -11,6 +11,14 @@ import { Kanban } from '@/widgets/kanban'
 import { Table } from '@/widgets/table'
 
 export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SuspendedComponent />
+    </Suspense>
+  )
+}
+
+function SuspendedComponent() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [categories, setCategories] = useState<Category[]>([])
 
@@ -103,19 +111,16 @@ export default function Home() {
         setTasks={setTasks}
         setCategories={setCategories}
       />
-
-      <Suspense fallback={<div>Loading...</div>}>
-        {viewMode === 'table' ? (
-          <Table tasks={filteredAndSortedTasks} />
-        ) : (
-          <Kanban
-            tasks={filteredAndSortedTasks}
-            setTasks={setTasks}
-            categories={categories}
-            setCategories={setCategories}
-          />
-        )}
-      </Suspense>
+      {viewMode === 'table' ? (
+        <Table tasks={filteredAndSortedTasks} />
+      ) : (
+        <Kanban
+          tasks={filteredAndSortedTasks}
+          setTasks={setTasks}
+          categories={categories}
+          setCategories={setCategories}
+        />
+      )}
     </div>
   )
 }
