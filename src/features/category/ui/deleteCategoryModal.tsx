@@ -66,7 +66,7 @@ export const DeleteCategoryModal = forwardRef<
 
   return (
     <dialog
-      className="w-full max-w-[500px] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] outline-0 border-0 rounded-xl mx-4"
+      className="w-[95%] max-w-[500px] top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] outline-0 border-0 rounded-xl"
       ref={dialogRef}
       onClick={e => {
         if (e.target === e.currentTarget) {

@@ -6,7 +6,7 @@ import { Category } from '@/entities/categories'
 import { Task } from '@/entities/task'
 import { AddCategoryBtn } from '@/features/category'
 import { MenuBtn } from '@/features/menu'
-import { AddTaskBtn, FilterTask, SortTask } from '@/features/task'
+import { AddTaskBtn, FilterTaskBtn, SortTask } from '@/features/task'
 import { SwitchView } from '@/features/task/ui/switchView'
 
 interface HeaderProps {
@@ -30,7 +30,7 @@ export const Header: FC<HeaderProps> = ({
         </div>
         <div className="flex gap-2 md:gap-4">
           <SortTask />
-          <FilterTask />
+          <FilterTaskBtn categories={categories} />
         </div>
       </header>
       <header>
@@ -40,7 +40,7 @@ export const Header: FC<HeaderProps> = ({
           <MenuBtn>
             <SwitchView />
             <SortTask />
-            <FilterTask />
+            <FilterTaskBtn categories={categories} />
           </MenuBtn>
         </div>
       </header>
