@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Todo List
 
-## Getting Started
+Happy Phone test task.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The application allows users to create, edit, and manage tasks within user-defined categories. It supports two display modes: List and Kanban, with drag-and-drop functionality for task management.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Main Page (/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- View Switcher: Toggle between List and Kanban views.
+- Task Filtering: Filter tasks by status and category.
+- Create Task Button: Button to create a new task.
+- Create Category Button: Button to create a new category.
+- Categories:
+  - Create and delete categories with confirmation.
+  - Display categories in the Kanban view.
+  - Associate tasks with categories.
+- List View:
 
-## Learn More
+  - Tasks are displayed in a vertical list.
+  - Sorting options:
+    - By creation date
+    - Alphabetically
+    - By status
 
-To learn more about Next.js, take a look at the following resources:
+- Kanban View:
+  - Tasks are displayed in columns based on categories.
+  - Supports drag-and-drop functionality between categories.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Task Editing Page (/task/[id])
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Allows users to:
+  - Edit the task title, status, and category.
+  - Delete the task with confirmation.
 
-## Deploy on Vercel
+## Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Main page](./screenshots/main-page.png)  
+![Add task form modal](./screenshots/add-task.png)
+![Add category form modal](./screenshots/add-category.png)  
+![Kanban view](./screenshots/kanban-view.png)
+![filter modal](./screenshots/filter-modal.png)  
+![task detail page](./screenshots/task-detail.png)
+![edit task form modal](./screenshots/edit-task.png)  
+![delete task modal](./screenshots/delete-task.png)
+![404 page](./screenshots/404.png)
+![not existing task page](./screenshots/nonexisting-task.png)

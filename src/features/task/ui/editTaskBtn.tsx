@@ -55,7 +55,7 @@ export const EditTaskBtn: FC<EditTaskBtnProps> = ({
     <>
       <Button type="button" mode="secondary" onClick={openDialog}>
         <Pencil />
-        Edit
+        <span>Edit</span>
       </Button>
       {isClient &&
         createPortal(

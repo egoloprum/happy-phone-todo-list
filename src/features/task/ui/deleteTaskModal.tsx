@@ -64,21 +64,21 @@ export const DeleteTaskModal = forwardRef<
         e.preventDefault()
         onClose()
       }}>
-      <form action="" onSubmit={handleSubmit} className="p-4">
-        <p className="text-xl font-bold mb-4">Delete Task</p>
-        <div className="mb-4">
+      <form action="" onSubmit={handleSubmit} className="p-6">
+        <p className="text-xl font-bold mb-6">Delete Task</p>
+        <div className="space-y-4 mb-6">
           <p className="">
             Are you sure you want to delete this task?
             <br />
             You can not retrieve it after this action.
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button type="submit" mode="danger">
-            Continue
-          </Button>
+        <div className="flex gap-3 justify-end">
           <Button type="button" mode="ghost" onClick={onClose}>
             Close
+          </Button>
+          <Button type="submit" mode="danger">
+            Continue
           </Button>
         </div>
       </form>

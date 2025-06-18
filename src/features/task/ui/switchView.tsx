@@ -26,11 +26,11 @@ export const SwitchView = ({}) => {
     <>
       <Button mode="ghost" onClick={() => handleClick('table')}>
         <TableProperties />
-        Table view
+        <span>Table view</span>
       </Button>
       <Button mode="ghost" onClick={() => handleClick('kanban')}>
         <SquareKanban />
-        Kanban board
+        <span>Kanban board</span>
       </Button>
     </>
   )

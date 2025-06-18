@@ -3,7 +3,7 @@
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
 import { Category } from '@/entities/categories'
-import { Button } from '@/shared/ui'
+import { Button, Input } from '@/shared/ui'
 
 interface AddCategoryProps {
   onClose?: () => void
@@ -78,33 +78,29 @@ export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
           e.preventDefault()
           onClose()
         }}>
-        <form action="" onSubmit={handleSubmit} className="p-4">
-          <p className="text-xl font-bold mb-4">Add New Category</p>
-          <div className="mb-4">
-            <label
-              htmlFor="categoryType"
-              className="block text-sm font-medium mb-1">
-              Category Name
-            </label>
-            <input
+        <form action="" onSubmit={handleSubmit} className="p-6">
+          <p className="text-xl font-bold mb-6">Add New Category</p>
+          <div className="space-y-4 mb-6">
+            <Input
               type="text"
-              id="categoryType"
+              id="taskDate"
+              mode="secondary"
+              label="Category Name"
+              placeholder="Enter category name"
               value={categoryType}
               onChange={e => {
                 setCategoryType(e.target.value)
                 setError('')
               }}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter category name"
+              error={error}
             />
-            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
           </div>
-          <div className="flex gap-2">
-            <Button type="submit" mode="secondary">
-              Add Category
-            </Button>
+          <div className="flex gap-3 justify-end">
             <Button type="button" mode="ghost" onClick={onClose}>
               Close
+            </Button>
+            <Button type="submit" mode="secondary">
+              Continue
             </Button>
           </div>
         </form>

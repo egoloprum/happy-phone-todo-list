@@ -77,21 +77,21 @@ export const DeleteCategoryModal = forwardRef<
         e.preventDefault()
         onClose()
       }}>
-      <form action="" onSubmit={handleSubmit} className="p-4">
-        <p className="text-xl font-bold mb-4">Delete Category</p>
-        <div className="mb-4">
+      <form action="" onSubmit={handleSubmit} className="p-6">
+        <p className="text-xl font-bold mb-6">Delete Category</p>
+        <div className="mb-6">
           <p className="">
             Are you sure you want to delete this category ({category.type})?
             <br />
             This will also delete all tasks in this category.
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button type="submit" mode="danger">
-            Continue
-          </Button>
+        <div className="flex gap-3 justify-end">
           <Button type="button" mode="ghost" onClick={onClose}>
             Close
+          </Button>
+          <Button type="submit" mode="danger">
+            Continue
           </Button>
         </div>
       </form>

@@ -38,7 +38,7 @@ export const TaskDetail: FC<TaskDetailProps> = ({ taskId }) => {
     return (
       <div className="p-4 border rounded-xl border-gray-200 w-[500px] h-fit">
         <h1 className="text-2xl">Task does not exist</h1>
-        <p>No task found with ID: {taskId}</p>
+        <p className="mb-4">No task found with ID: {taskId}</p>
         <Button
           mode="ghost"
           className="ml-auto"

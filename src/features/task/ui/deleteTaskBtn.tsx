@@ -34,7 +34,7 @@ export const DeleteTaskBtn: FC<DeleteTaskBtnProps> = ({ taskId }) => {
     <>
       <Button type="button" mode="danger" onClick={openDialog}>
         <X />
-        Delete
+        <span>Delete</span>
       </Button>
       {isClient &&
         createPortal(
