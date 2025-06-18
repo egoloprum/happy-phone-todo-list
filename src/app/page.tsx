@@ -18,6 +18,9 @@ export default function Home() {
   const viewMode = searchParams.get('view') || 'table'
   const sortMode = searchParams.get('sort')
 
+  const filterByStatus = searchParams.get('status')
+  const filterByCategory = searchParams.get('category')
+
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
     const storedCategories = localStorage.getItem('categories')
@@ -45,37 +48,53 @@ export default function Home() {
     }
   }, [categories])
 
-  const sortedTasks = useMemo(() => {
-    if (!sortMode) return tasks
+  const filteredAndSortedTasks = useMemo(() => {
+    let filteredTasks = [...tasks]
 
-    return [...tasks].sort((a, b) => {
-      switch (sortMode) {
-        case 'date':
-          return (
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-          )
+    if (filterByStatus) {
+      filteredTasks = filteredTasks.filter(
+        task => task.status === filterByStatus
+      )
+    }
 
-        case 'alphabet':
-          return a.content.localeCompare(b.content, undefined, {
-            sensitivity: 'base'
-          })
+    if (filterByCategory) {
+      filteredTasks = filteredTasks.filter(
+        task => task.category === filterByCategory
+      )
+    }
 
-        case 'status':
-          const statusOrder = StatusList.reduce(
-            (acc, status, index) => {
-              acc[status] = index
-              return acc
-            },
-            {} as Record<string, number>
-          )
+    if (sortMode) {
+      filteredTasks.sort((a, b) => {
+        switch (sortMode) {
+          case 'date':
+            return (
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime()
+            )
 
-          return statusOrder[a.status] - statusOrder[b.status]
+          case 'alphabet':
+            return a.content.localeCompare(b.content, undefined, {
+              sensitivity: 'base'
+            })
 
-        default:
-          return 0
-      }
-    })
-  }, [tasks, sortMode])
+          case 'status':
+            const statusOrder = StatusList.reduce(
+              (acc, status, index) => {
+                acc[status] = index
+                return acc
+              },
+              {} as Record<string, number>
+            )
+            return statusOrder[a.status] - statusOrder[b.status]
+
+          default:
+            return 0
+        }
+      })
+    }
+
+    return filteredTasks
+  }, [tasks, sortMode, filterByStatus, filterByCategory])
 
   return (
     <div className="min-h-[100vh]">
@@ -87,10 +106,10 @@ export default function Home() {
 
       <Suspense fallback={<div>Loading...</div>}>
         {viewMode === 'table' ? (
-          <Table tasks={sortedTasks} />
+          <Table tasks={filteredAndSortedTasks} />
         ) : (
           <Kanban
-            tasks={sortedTasks}
+            tasks={filteredAndSortedTasks}
             setTasks={setTasks}
             categories={categories}
             setCategories={setCategories}

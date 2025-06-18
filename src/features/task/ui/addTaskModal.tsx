@@ -82,7 +82,7 @@ export const AddTaskModal = forwardRef<AddTaskRef, AddTaskProps>(
 
     return (
       <dialog
-        className="w-full max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 outline-0 border-0 rounded-xl mx-4 bg-white shadow-xl"
+        className="w-[95%] max-w-[500px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 outline-0 border-0 rounded-xl bg-white shadow-xl"
         ref={dialogRef}
         onClick={e => {
           if (e.target === e.currentTarget) {
