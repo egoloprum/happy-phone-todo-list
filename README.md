@@ -38,13 +38,13 @@ The application allows users to create, edit, and manage tasks within user-defin
 
 ## Screenshots
 
-![Main page](./screenshots/main-page.png)  
-![Add task form modal](./screenshots/add-task.png)
-![Add category form modal](./screenshots/add-category.png)  
-![Kanban view](./screenshots/kanban-view.png)
-![filter modal](./screenshots/filter-modal.png)  
-![task detail page](./screenshots/task-detail.png)
-![edit task form modal](./screenshots/edit-task.png)  
-![delete task modal](./screenshots/delete-task.png)
-![404 page](./screenshots/404.png)
-![not existing task page](./screenshots/nonexisting-task.png)
+![Main page](./public/screenshots/main-page.png)  
+![Add task form modal](./public/screenshots/add-task.png)
+![Add category form modal](./public/screenshots/add-category.png)  
+![Kanban view](./public/screenshots/kanban-view.png)
+![filter modal](./public/screenshots/filter-modal.png)  
+![task detail page](./public/screenshots/task-detail.png)
+![edit task form modal](./public/screenshots/edit-task.png)  
+![delete task modal](./public/screenshots/delete-task.png)
+![404 page](./public/screenshots/404.png)
+![not existing task page](./public/screenshots/nonexisting-task.png)
