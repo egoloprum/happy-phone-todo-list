@@ -79,7 +79,11 @@ export default function Home() {
 
   return (
     <div className="min-h-[100vh]">
-      <Header categories={categories} setTasks={setTasks} />
+      <Header
+        categories={categories}
+        setTasks={setTasks}
+        setCategories={setCategories}
+      />
 
       <Suspense fallback={<div>Loading...</div>}>
         {viewMode === 'table' ? (
