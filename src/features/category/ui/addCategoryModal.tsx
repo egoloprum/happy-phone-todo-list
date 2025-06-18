@@ -2,10 +2,12 @@
 
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
+import { Category } from '@/entities/categories'
 import { Button } from '@/shared/ui'
 
 interface AddCategoryProps {
   onClose?: () => void
+  onAddCategory: (newCategory: Category) => void
 }
 
 type AddCategoryRef = {
@@ -14,14 +16,14 @@ type AddCategoryRef = {
 }
 
 export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
-  ({ onClose = () => {} }, ref) => {
+  ({ onClose = () => {}, onAddCategory }, ref) => {
     const dialogRef = useRef<HTMLDialogElement>(null)
-    const [newCategory, setNewCategory] = useState<string>('')
+    const [categoryType, setCategoryType] = useState<string>('')
     const [error, setError] = useState<string>('')
 
     useImperativeHandle(ref, () => ({
       showModal: () => {
-        setNewCategory('')
+        setCategoryType('')
         setError('')
         dialogRef.current?.classList.remove('closing')
         dialogRef.current?.classList.add('opening')
@@ -40,10 +42,26 @@ export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault()
 
-      if (!newCategory.trim()) {
+      if (!categoryType.trim()) {
         setError('Category name is required')
         return
       }
+
+      const storedCategories = localStorage.getItem('categories')
+      const existingCategories: Category[] = storedCategories
+        ? JSON.parse(storedCategories)
+        : []
+      const newId =
+        existingCategories.length > 0
+          ? Math.max(...existingCategories.map(category => category.id)) + 1
+          : 1
+
+      const newCategory: Category = {
+        id: newId,
+        type: categoryType.charAt(0).toUpperCase() + categoryType.slice(1)
+      }
+
+      onAddCategory(newCategory)
       onClose()
     }
 
@@ -64,16 +82,16 @@ export const AddCategoryModal = forwardRef<AddCategoryRef, AddCategoryProps>(
           <p className="text-xl font-bold mb-4">Add New Category</p>
           <div className="mb-4">
             <label
-              htmlFor="categoryName"
+              htmlFor="categoryType"
               className="block text-sm font-medium mb-1">
               Category Name
             </label>
             <input
               type="text"
-              id="categoryName"
-              value={newCategory}
+              id="categoryType"
+              value={categoryType}
               onChange={e => {
-                setNewCategory(e.target.value)
+                setCategoryType(e.target.value)
                 setError('')
               }}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
