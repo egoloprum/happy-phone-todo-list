@@ -27,7 +27,9 @@ export const Table: FC<TableProps> = ({ tasks }) => {
               key={index}
               className="border-b-1 border-gray-200 text-sm md:text-base">
               <td className="p-2 md:p-4">
-                <Link href={`/task/${task.id}`}>{task.content}</Link>
+                <Link href={`/task/${task.id}`} className="hover:underline">
+                  {task.content}
+                </Link>
               </td>
               <td className="p-2 md:p-4">{task.status}</td>
               <td className="p-2 md:p-4">{task.category}</td>
