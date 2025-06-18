@@ -85,7 +85,12 @@ export default function Home() {
         {viewMode === 'table' ? (
           <Table tasks={sortedTasks} />
         ) : (
-          <Kanban tasks={sortedTasks} setTasks={setTasks} />
+          <Kanban
+            tasks={sortedTasks}
+            setTasks={setTasks}
+            categories={categories}
+            setCategories={setCategories}
+          />
         )}
       </Suspense>
     </div>
